@@ -10,3 +10,4 @@ I was born and raised in Franklin, Tennessee. I graduated from Vanderbilt Univer
 [<i class="fab fa-linkedin"></i>](https://www.linkedin.com/in/allisoneroberts/)
 
 <img src="/./about_files/fullsizeoutput_53fc.jpeg" alt="martha_and_allison" width="200px" height="100%"/>
+![health_as_gears](/./about_files/health as gears.jpg)
