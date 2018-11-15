@@ -29,7 +29,7 @@ pygmentsCodefences      = true
     primaryImage        = "tn.png"                     # Image that shows on Twitter cards and OpenGraph links
 
 [[params.mainMenu]]
-    link = "/about"
+    link = "/gallery"
     text = "meet allison roberts"
 
 [[params.mainMenu]]
