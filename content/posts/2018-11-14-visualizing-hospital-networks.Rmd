@@ -1,0 +1,88 @@
+---
+title: Visualizing Hospital Networks
+author: Allison Roberts
+date: '2018-11-14'
+slug: visualizing-hospital-networks
+categories:
+  - R
+tags:
+  - R Markdown
+  - code
+  - hospitals
+  - social networks
+showDate: false
+---
+
+##Visualizing a Network
+  My goal is to build an interactive network model that jiggles and is generally fun.  I ended up exporting the final product into Shiny, and it looks like this:
+  <iframe width="600" height="650" src="https://allison-roberts.shinyapps.io/Hosp_Similarity/"> </iframe>
+  
+  Below, I'll show you how I created this project, starting with a similarity matrix of hospital websites and a list of hospital attributes.  To see how I created the similarity matrix, check out [Part One](/posts/2018-11-15-creating-a-similarity-matrix).  If you're interested in doing more network visualization, I highly recommend [this guide](http://kateto.net/network-visualization).  It's a great page, and has tons of options for visualizing a network.
+  
+  **Setting Up the Workspace**  
+  First, I need a few packages.  I use iGraph and visNetwork.  Note that, if you don't want your graph to be extremely interactive, you can generate some pretty interesting graphs with just iGraph.
+```{r message=FALSE, warning=FALSE}
+library(igraph)
+library(visNetwork)
+```
+  Next, I need to import my data.  This data was generated using the [American Hospital Directory](ahd.com).
+  
+```{r}
+
+#Links
+highmat <- readRDS("~/Box Sync/Dissertation (1)/Text Analysis Paper/Data/CMS/high_similarity.rds")
+#attributes
+cleanedcms <- readRDS("~/Box Sync/Dissertation (1)/Text Analysis Paper/Data/CMS/cleanedcms.RDS")
+```
+  
+  **Preparing the Data for visNetwork**  
+  For the final visualization, I'll be using visNetwork, but I need to get my matrix into a data format that visNetwork will recognize.  For that, I'm using iGraph.
+```{r}
+#This creates the iGraph object
+inet <- graph_from_adjacency_matrix(highmat, mode=c("undirected"), weighted=TRUE, diag=FALSE)
+inet <- simplify(inet, remove.multiple = T, remove.loops = T)
+
+#This takes the object and generates a DataFrame with a list of IDs and connections
+Dedges <- as_data_frame(inet, what ="edges")
+
+```
+  
+  This gets my "edges" (the connections between hospitals) all set up and ready to go.  However, I also want to set up my "nodes"--the actual websites.  I have a comprehensive list of attributes that I got from the AHD, but I need to do a bit of tweaking in order to get my attributes of interest to show up on the final graph in an intuitive way.  The way this works is pretty fun--you simply add new "variables" to a node dataframe that specify characteristics.  visNetwork knows that "shadow" is a parameter for the graph.
+```{r}
+#Create a new dataframe from my Cleaned CMS data
+vis.nodes <- cleanedcms 
+ #identifies that a hospital's CMS is its ID
+vis.nodes$id <- vis.nodes$CMS
+#I want my nodes to have shadows (so they look exciting)
+vis.nodes$shadow <- TRUE  
+#text on click--the hospital name
+vis.nodes$title <- vis.nodes$hosp_name 
+#scale dot size to match the number of beds
+vis.nodes$size <- (cleanedcms$Beds)/25 
+#This creates a list of colors (as I am too lazy to pick my own)
+colrs <- rainbow(87, alpha=1) 
+#assigns node color by hospital network
+vis.nodes$color.background <- (colrs)[as.factor(vis.nodes$network)] 
+#node border should be black
+vis.nodes$color.border <- "black"
+#I don't want each node to have a label
+vis.nodes$label <- NA
+```
+  
+  **Creating the visNetwork Graph**  
+  Finally, I graph my network using visNetwork.  I highly recommend checking out the [visNetwork website](https://datastorm-open.github.io/visNetwork/) for more information about creatig your own dynamic network.  A few key points that I figured out:  
+   -You can speed up the generation of the network, and increase its motion, by turning off stabilization.  
+   -If you want to change the shape of the network, use "visPhysics" not "visLayout". visPhysics actually provides tools to change the layout, while visLayout seemed a bit clunky and didn't work for me.  
+   -Related: You can change how close your dots are by changing the "gravitational constant" in physics.
+```{r visNetwork, fig.cap="Hospital Website Similarity", tidy=FALSE}
+par(mar=c(0,1,0,1))
+visNetwork(vis.nodes, Dedges) %>% 
+  visOptions(highlightNearest = T, 
+             selectedBy = list(variable="control2", main="Select by control type"),
+             width="500px", height="500px",
+             collapse = list(enabled = TRUE, clusterOptions = list(shape = "square")), 
+             autoResize = T) %>% 
+  visPhysics(stabilization=FALSE, solver="forceAtlas2Based", forceAtlas2Based = list(gravitationalConstant=-5))
+```
+  
+  The above works, but isn't very versatile.  I can open it in a webpage, save it as HTML, or embed it in RMarkdown, but I wanted to be able to share it liberally.  So I converted it into a `Shiny` application.  Using Shiny allowed me to turn it into a web application, available from anywhere, and I can embed it in most sites using "iFrame".  The process of turning the project into an app goes a bit beyond the purview of this writeup, but it wasn't as hard as it sounds!
