@@ -1,0 +1,78 @@
+---
+title: Comparing Hospital Websites
+author: Allison Roberts
+date: '2018-11-13'
+slug: comparing-hospital-websites
+categories: []
+tags: []
+showDate: no
+---
+This `RStudio` project proposes a strategy to compare hospital websites using their main menus.  Main menus are relatively consistent across sites, but also reflect active curating by web developers.  They tell us what the hospital offers, and how it feels those offerings should be advertised.  
+This project starts with a dataframe that has a "main menu text" variable.  This dataframe was built using Python's BeautifulSoup package, where a list of hospital URLs were scraped for a variety of text variables.  The URLs, and associated hospital data, were obtained from the [American Hospital Directory](www.ahd.com).  The full Python code (written in Jupyter Notebook) is in a different [post](/posts/scraping-websites).  
+
+## Background
+  How hospitals present themselves matters.  We often decide what hospital to use, which physicians to trust, and whether or not to get voluntary procedures based on the information on these sites.  In fact, when you google common medical treatments (like weight loss surgery, cardiovascular treatments), hospital websites often pop up.  This is by design--if you are searching for a treatment, you may be a potential customer for the hospital.  So, I was interested in how hospitals choose to present themselves.  Do all sites look the same?  What hospital characteristics predict similar websites?  This question also relates back to a lot of sociological theory on [neoinstitutionalism](https://www.britannica.com/topic/neoinstitutionalism) and the related concept of isomorphism, which I won't get into here.  
+  
+## Setting the Environment
+We need only one package for this project, which allows us to evaluate the similarity of two strings.  You should also set your WD.
+```{r eval=FALSE, warning=FALSE, include=TRUE}
+library(RecordLinkage)
+```
+
+##Reading in the data
+For this to work, we need a dataset with a few key variables.  First, we need an ID for each unit. I use the CMS number of each hospital, as this unique to the facility and much shorter than the hospital name.  We also need the hospital menu.  The code assumes that menu items are separated by a semicolon.
+
+```{r eval=FALSE, warning=FALSE, include=TRUE}
+cmstext <- read.csv("cleanedcms.csv")
+```
+
+We also need to create an empty matrix, which is where we will put our similarity scores. The row and column names for this matrix should be the same--we are indicating how each two hospitals are related.
+```{r eval=FALSE, warning=FALSE, include=TRUE}
+simmat=matrix(NA, nrow(cmstext), nrow(cmstext))
+rownames(simmat) <- cmstext$CMS
+colnames(simmat) <- cmstext$CMS
+```
+
+Finally, we must populate the matrix.  This process involves SEVERAL nested for loops.  The following code essentiall does the following: It iterates over each hospital menu.  For each menu, it iterates over every menu item.  It then takes that menu item and compares it to every menu item from every other menu for every other hospital.  Each item to item comparison generates an Levenshtein Similarity score.  The average similarity of two menus is populated into the matrix.  Two identical menus, then, would have a similarity score of "1."  This method is nice, because it doesn't care about order--as long as the same items appear SOMEWHERE in each menu item, their similarity increases.  It also allows for variations of the same thing ("Weight-Loss" versus "Weight Loss") to be scored as highly similar.
+
+```{r eval=FALSE, include=TRUE}
+for(x in 1:nrow(cmstext)) {
+  #X is provided as a single string, wtih menu items divided by ";"
+  ##So we create an iterable list.
+  xlist <- unlist(strsplit(cmstext$menu[x], ";"))
+  #We need to prepare Y in the same way.
+  for(y in 1:nrow(cmstext)){
+    sim <- 0
+    n <- 0
+    ylist <- unlist(strsplit(cmstext$menu[y], ";"))
+    #The following for loop goes through every menu item in X
+    for(each in xlist){
+      this <- 0
+      #Each menu item gets paired to Y
+      ##A running value of the closest match to the X menu item is created with "this"
+      for(one in ylist){
+        prox <- levenshteinSim(each,one)
+        if(prox > this){ this <- prox}
+      }
+      #At this point, "this" should equal the closest match
+      ##We add this match to the total "similarity" score
+      sim <- sim+this
+      #We also increase the count of total list items we have iterated through
+      n <- n+1
+    }
+    #At this point, sim/n should create the mean similarity for the two menus.
+    ##Sim = total of all similarity scores, N==total number of X menu items compared
+   simmat[x,y] <- sim/n
+  }
+  print(x)
+}
+```
+
+The matrix is now populated, and perfect for weighted network analysis.  If, however, you want to graph your network, this matrix is terrible.  Almost every two websites will be at least marginally similar, leading to a highly confusing graph.  So, I create a separate matrix which only reflects a "tie" between two sites if they are highly similar (greater than .7).  This worked better than splitting at the mean of .46 (because half of the hospitals were still linked, which is very confusing to see), and starts about 1 standard deviation above the mean.
+
+```{r eval=FALSE, warning=FALSE, include=TRUE}
+highmat <- simmat
+highmat[highmat <= .7] <- 0
+```
+
+And there you have it! If you want to see what can be done with this data, check out my [visualization post](/pages/visualizing-hospital-networks).

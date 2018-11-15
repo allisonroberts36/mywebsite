@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Allison Roberts</title>
+    <link>/</link>
+    <description>Recent content on Allison Roberts</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 14 Nov 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Testing</title>
+      <link>/ihi/test/</link>
+      <pubDate>Wed, 14 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/ihi/test/</guid>
+      <description>R Markdown This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.
+When you click the Knit button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:</description>
+    </item>
+    
+    <item>
+      <title>Visualizing Hospital Networks</title>
+      <link>/posts/visualizing-hospital-networks/</link>
+      <pubDate>Wed, 14 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/visualizing-hospital-networks/</guid>
+      <description>Visualizing a Network My goal is to build an interactive network model that jiggles and is generally fun. I ended up exporting the final product into Shiny, and it looks like this: 
+Below, I’ll show you how I created this project, starting with a similarity matrix of hospital websites and a list of hospital attributes. To see how I created the similarity matrix, check out Part One.</description>
+    </item>
+    
+    <item>
+      <title>Comparing Hospital Websites</title>
+      <link>/posts/comparing-hospital-websites/</link>
+      <pubDate>Tue, 13 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/comparing-hospital-websites/</guid>
+      <description>This RStudio project proposes a strategy to compare hospital websites using their main menus. Main menus are relatively consistent across sites, but also reflect active curating by web developers. They tell us what the hospital offers, and how it feels those offerings should be advertised.
+This project starts with a dataframe that has a “main menu text” variable. This dataframe was built using Python’s BeautifulSoup package, where a list of hospital URLs were scraped for a variety of text variables.</description>
+    </item>
+    
+    <item>
+      <title>Scraping Websites</title>
+      <link>/posts/scraping-websites/</link>
+      <pubDate>Tue, 13 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/scraping-websites/</guid>
+      <description>The following code scrapes a list of websites using Python. Most of the explanations are provided within the code as comments.
+We first import a few packages to assist with scraping, and set the working directory.
+#Import Packages import requests from bs4 import BeautifulSoup import lxml import os import re import pandas as pd import numpy as np from urllib.parse import urljoin #Set Working Directory os.getcwd() os.chdir(&amp;#34;Your/File/Path/Here&amp;#34;) Once the environment is set up, I wrote a variety of functions to conduct different type of scrapes.</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>/about/</link>
+      <pubDate>Tue, 13 Feb 2018 13:42:49 -0500</pubDate>
+      
+      <guid>/about/</guid>
+      <description>I&amp;rsquo;m a PhD graduate student at Emory University, where I study everything related to healthcare. My dissertation focuses on how hospitals implement innovations, like weigh-loss surgery. I want to know how our &amp;ldquo;healthcare-is-a-business&amp;rdquo; model might incentivize profitable procedures, but not life-saving ones. I also teach the Sociology of Health and Illness and an Introduction to Quantitative Theory and Methods lab section (conducted in R).
+I was born and raised in Franklin, Tennessee.</description>
+    </item>
+    
+    <item>
+      <title>Publications and Presentations</title>
+      <link>/publications/</link>
+      <pubDate>Tue, 13 Feb 2018 13:42:49 -0500</pubDate>
+      
+      <guid>/publications/</guid>
+      <description>Publications Peer-Reviewed Journal Articles
+Kornrich, Sabino and Allison Roberts. 2017. “Household Income, Women’s Earnings, and Spending on Household Services, 1980-2010.&amp;rdquo; Journal of Marriage and Family. 80:150-165.
+Edited Volumes
+Roberts, Allison. 2012. “Saving Normandy Lake.” An Orange County Almanac and Other Essays, edited by J. Zammit-Lucia. WOLFoundation.org: New York, NY.
+Presentations
+Roberts, Allison. 2018. &amp;ldquo;Hawking Surgery: Hospitals and Online Competition.&amp;rdquo; Southern Sociological Society Annual Meeting 2018: New Orleans.
+Roberts, Allison. &amp;ldquo;Selling Health.</description>
+    </item>
+    
+    <item>
+      <title>Teaching</title>
+      <link>/teaching/</link>
+      <pubDate>Tue, 13 Feb 2018 13:42:49 -0500</pubDate>
+      
+      <guid>/teaching/</guid>
+      <description>Courses Taught SOC230: Sociological Aspects of Health and Illness Fall 2017, Summer 2018
+My course taught students a variety of ways to consider health and illness: at an individual, institutional, or population level. Students were asked to design research projects aligning with one of these levels, as well as read current articles in the field.
+See a sample syllabus.
+Guest Lectures &amp;ldquo;Durkheim, Mardi Gras, and the Sociology of Culture.&amp;rdquo; Sociology of Culture with Sonal Nalkur.</description>
+    </item>
+    
+    <item>
+      <title>Hello R Markdown</title>
+      <link>/post/2015-07-23-r-rmarkdown/</link>
+      <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2015-07-23-r-rmarkdown/</guid>
+      <description>R Markdown This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.
+You can embed an R code chunk like this:
+summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 26.00 ## Median :15.0 Median : 36.00 ## Mean :15.4 Mean : 42.98 ## 3rd Qu.</description>
+    </item>
+    
+  </channel>
+</rss>

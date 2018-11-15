@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>healthcare improvement on Allison Roberts</title>
+    <link>/ihi/</link>
+    <description>Recent content in healthcare improvement on Allison Roberts</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 14 Nov 2018 12:21:57 -0500</lastBuildDate>
+    
+	<atom:link href="/ihi/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Testing</title>
+      <link>/ihi/test/</link>
+      <pubDate>Wed, 14 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/ihi/test/</guid>
+      <description>R Markdown This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.
+When you click the Knit button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:</description>
+    </item>
+    
+  </channel>
+</rss>

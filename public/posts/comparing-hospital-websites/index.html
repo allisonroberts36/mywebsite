@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+
+<meta name="description" content="Allison Roberts">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:domain" content="/">
+
+<meta name="twitter:image" content="/tn.png">
+<meta name="twitter:title" property="og:title" itemprop="title name" content="Allison Roberts">
+<meta name="twitter:description" property="og:description" itemprop="description" content="Allison Roberts">
+<meta name="og:type" content="website">
+<meta name="og:url" content="/">
+<meta name="og:image" itemprop="image primaryImageOfPage" content="/tn.png">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<link rel="shortcut icon" href="/sam.ico" id="favicon">
+<link rel="stylesheet" href="/css/style.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Didact+Gothic">
+
+
+    
+
+    
+    
+    
+    <title>
+        
+        Comparing Hospital Websites
+        
+    </title>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="section" id="title">Comparing Hospital Websites</div>
+
+        
+<div class="section" id="content">
+    Tue Nov 13, 2018 &#183; 792 words
+    
+    <hr/>
+    
+
+
+<p>This <code>RStudio</code> project proposes a strategy to compare hospital websites using their main menus. Main menus are relatively consistent across sites, but also reflect active curating by web developers. They tell us what the hospital offers, and how it feels those offerings should be advertised.<br />
+This project starts with a dataframe that has a “main menu text” variable. This dataframe was built using Python’s BeautifulSoup package, where a list of hospital URLs were scraped for a variety of text variables. The URLs, and associated hospital data, were obtained from the <a href="www.ahd.com">American Hospital Directory</a>. The full Python code (written in Jupyter Notebook) is in a different <a href="/posts/scraping-websites">post</a>.</p>
+<div id="background" class="section level2">
+<h2>Background</h2>
+<p>How hospitals present themselves matters. We often decide what hospital to use, which physicians to trust, and whether or not to get voluntary procedures based on the information on these sites. In fact, when you google common medical treatments (like weight loss surgery, cardiovascular treatments), hospital websites often pop up. This is by design–if you are searching for a treatment, you may be a potential customer for the hospital. So, I was interested in how hospitals choose to present themselves. Do all sites look the same? What hospital characteristics predict similar websites? This question also relates back to a lot of sociological theory on <a href="https://www.britannica.com/topic/neoinstitutionalism">neoinstitutionalism</a> and the related concept of isomorphism, which I won’t get into here.</p>
+</div>
+<div id="setting-the-environment" class="section level2">
+<h2>Setting the Environment</h2>
+<p>We need only one package for this project, which allows us to evaluate the similarity of two strings. You should also set your WD.</p>
+<pre class="r"><code>library(RecordLinkage)</code></pre>
+</div>
+<div id="reading-in-the-data" class="section level2">
+<h2>Reading in the data</h2>
+<p>For this to work, we need a dataset with a few key variables. First, we need an ID for each unit. I use the CMS number of each hospital, as this unique to the facility and much shorter than the hospital name. We also need the hospital menu. The code assumes that menu items are separated by a semicolon.</p>
+<pre class="r"><code>cmstext &lt;- read.csv(&quot;cleanedcms.csv&quot;)</code></pre>
+<p>We also need to create an empty matrix, which is where we will put our similarity scores. The row and column names for this matrix should be the same–we are indicating how each two hospitals are related.</p>
+<pre class="r"><code>simmat=matrix(NA, nrow(cmstext), nrow(cmstext))
+rownames(simmat) &lt;- cmstext$CMS
+colnames(simmat) &lt;- cmstext$CMS</code></pre>
+<p>Finally, we must populate the matrix. This process involves SEVERAL nested for loops. The following code essentiall does the following: It iterates over each hospital menu. For each menu, it iterates over every menu item. It then takes that menu item and compares it to every menu item from every other menu for every other hospital. Each item to item comparison generates an Levenshtein Similarity score. The average similarity of two menus is populated into the matrix. Two identical menus, then, would have a similarity score of “1.” This method is nice, because it doesn’t care about order–as long as the same items appear SOMEWHERE in each menu item, their similarity increases. It also allows for variations of the same thing (“Weight-Loss” versus “Weight Loss”) to be scored as highly similar.</p>
+<pre class="r"><code>for(x in 1:nrow(cmstext)) {
+  #X is provided as a single string, wtih menu items divided by &quot;;&quot;
+  ##So we create an iterable list.
+  xlist &lt;- unlist(strsplit(cmstext$menu[x], &quot;;&quot;))
+  #We need to prepare Y in the same way.
+  for(y in 1:nrow(cmstext)){
+    sim &lt;- 0
+    n &lt;- 0
+    ylist &lt;- unlist(strsplit(cmstext$menu[y], &quot;;&quot;))
+    #The following for loop goes through every menu item in X
+    for(each in xlist){
+      this &lt;- 0
+      #Each menu item gets paired to Y
+      ##A running value of the closest match to the X menu item is created with &quot;this&quot;
+      for(one in ylist){
+        prox &lt;- levenshteinSim(each,one)
+        if(prox &gt; this){ this &lt;- prox}
+      }
+      #At this point, &quot;this&quot; should equal the closest match
+      ##We add this match to the total &quot;similarity&quot; score
+      sim &lt;- sim+this
+      #We also increase the count of total list items we have iterated through
+      n &lt;- n+1
+    }
+    #At this point, sim/n should create the mean similarity for the two menus.
+    ##Sim = total of all similarity scores, N==total number of X menu items compared
+   simmat[x,y] &lt;- sim/n
+  }
+  print(x)
+}</code></pre>
+<p>The matrix is now populated, and perfect for weighted network analysis. If, however, you want to graph your network, this matrix is terrible. Almost every two websites will be at least marginally similar, leading to a highly confusing graph. So, I create a separate matrix which only reflects a “tie” between two sites if they are highly similar (greater than .7). This worked better than splitting at the mean of .46 (because half of the hospitals were still linked, which is very confusing to see), and starts about 1 standard deviation above the mean.</p>
+<pre class="r"><code>highmat &lt;- simmat
+highmat[highmat &lt;= .7] &lt;- 0</code></pre>
+<p>And there you have it! If you want to see what can be done with this data, check out my <a href="/pages/visualizing-hospital-networks">visualization post</a>.</p>
+</div>
+
+</div>
+
+
+        
+<div class="section bottom-menu">
+    
+<hr />
+<p>
+
+
+    
+        <a href="/posts">back</a>
+        
+            &#183;
+        
+    
+
+    
+        
+            <a href="/about">
+                meet allison roberts
+            </a>
+        
+    
+    
+        
+            &#183; 
+            <a href="/posts">
+                data projects
+            </a>
+        
+            &#183; 
+            <a href="/publications">
+                publications/presentations
+            </a>
+        
+            &#183; 
+            <a href="/IHI">
+                healthcare improvement
+            </a>
+        
+            &#183; 
+            <a href="/teaching">
+                teaching
+            </a>
+        
+    
+    &#183; 
+    <a href="/">
+        main
+    </a>
+
+</p>
+</div>
+
+
+        <div class="section footer">All rights reserved.
+                          <a href="https://www.linkedin.com/in/allisoneroberts/"><i class="fab fa-linkedin"></i></a>
+                          <a href="https://github.com/allisonroberts36/"><i class="fab fa-github"></i></a></div>
+    </div>
+</body>
+
+</html>
