@@ -1,9 +1,12 @@
 ---
-title: "Photos from Tokyo"
+title: "About"
 type: "gallery"
 url: "/gallery"
 ---
 
-This responsive image gallery is rendered in random order from a folder of image files. You can choose to make the images clickable to show the full size image, or not. You can set this text in the `_index.md` file in the `/content/gallery/` folder.
+I'm a PhD graduate student at Emory University, where I study everything related to healthcare.  My dissertation focuses on how hospitals implement innovations, like weigh-loss surgery. I want to know how our "healthcare-is-a-business" model might incentivize profitable procedures, but not life-saving ones.  I also teach the Sociology of Health and Illness and an Introduction to Quantitative Theory and Methods lab section (conducted in R).
 
-By the way, [Vicky](https://vickylai.com) took these photos in Tokyo. You can find some of them on [her nomad blog](https://heronebag.com).
+I was born and raised in Franklin, Tennessee. I graduated from Vanderbilt University in 2014, where I majored in sociology and creative writing.  In my free time, I love to hike, bike, and volunteer at a local equine therapy center: [Stride Ahead](www.strideahead.org).  I'm also the least-talented member of a volleyball team.
+
+[<i class="fab fa-linkedin"></i>](https://www.linkedin.com/in/allisoneroberts/)
+
