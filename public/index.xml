@@ -12,16 +12,6 @@
     
     
     <item>
-      <title>Testing</title>
-      <link>/ihi/test/</link>
-      <pubDate>Wed, 14 Nov 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/ihi/test/</guid>
-      <description>R Markdown This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.
-When you click the Knit button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:</description>
-    </item>
-    
-    <item>
       <title>Visualizing Hospital Networks</title>
       <link>/posts/visualizing-hospital-networks/</link>
       <pubDate>Wed, 14 Nov 2018 00:00:00 +0000</pubDate>
@@ -98,6 +88,15 @@ Guest Lectures &amp;ldquo;Durkheim, Mardi Gras, and the Sociology of Culture.&am
       <description>R Markdown This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.
 You can embed an R code chunk like this:
 summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 26.00 ## Median :15.0 Median : 36.00 ## Mean :15.4 Mean : 42.98 ## 3rd Qu.</description>
+    </item>
+    
+    <item>
+      <title>Apply for the Student Symposium!</title>
+      <link>/ihi/test/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/ihi/test/</guid>
+      <description>Apply for the Religion in Healthcare Student Symposium! We are seeking graduate students to present their research on religion and healthcare. This is a great opportunity to present your research to a new audience, and get free dinner! Apply here!</description>
     </item>
     
   </channel>

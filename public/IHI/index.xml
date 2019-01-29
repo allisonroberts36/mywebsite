@@ -12,13 +12,12 @@
     
     
     <item>
-      <title>Testing</title>
+      <title>Apply for the Student Symposium!</title>
       <link>/ihi/test/</link>
-      <pubDate>Wed, 14 Nov 2018 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/ihi/test/</guid>
-      <description>R Markdown This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.
-When you click the Knit button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:</description>
+      <description>Apply for the Religion in Healthcare Student Symposium! We are seeking graduate students to present their research on religion and healthcare. This is a great opportunity to present your research to a new audience, and get free dinner! Apply here!</description>
     </item>
     
   </channel>
