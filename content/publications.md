@@ -10,7 +10,11 @@ date: 2018-02-13T13:42:49-05:00
 **Edited Volumes**  
 Roberts, Allison. 2012. “Saving Normandy Lake.” An Orange County Almanac and Other Essays, edited by J. Zammit-Lucia. WOLFoundation.org: New York, NY.
 
-**Presentations**  
+**Presentations**
+Roberts, Allison. 2019. "Salvation through Surgery."  Healthcare Innovation Student Symposium: Atlanta.  
+Get the [citations](/files/References_HIP2019.pdf).
+Check out my data science blog posts for the code used in this presentation.
+
 Roberts, Allison. 2018. "Hawking Surgery: Hospitals and Online Competition." Southern Sociological Society Annual Meeting 2018: New Orleans.
 
 Roberts, Allison. "Selling Health." Healthcare Innovation Student Symposium 2018: Atlanta.
