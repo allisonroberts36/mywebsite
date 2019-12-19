@@ -6,7 +6,7 @@
     <description>Recent content in Tags on Allison Roberts</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 14 Nov 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 19 Dec 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,9 +14,36 @@
     <item>
       <title>Code</title>
       <link>/tags/code/</link>
-      <pubDate>Wed, 14 Nov 2018 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 19 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/code/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Geocoding</title>
+      <link>/tags/geocoding/</link>
+      <pubDate>Thu, 19 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/geocoding/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ggplot2</title>
+      <link>/tags/ggplot2/</link>
+      <pubDate>Thu, 19 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/ggplot2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ggplotly</title>
+      <link>/tags/ggplotly/</link>
+      <pubDate>Thu, 19 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/ggplotly/</guid>
       <description></description>
     </item>
     
@@ -39,6 +66,15 @@
     </item>
     
     <item>
+      <title>Plotly</title>
+      <link>/tags/plotly/</link>
+      <pubDate>Thu, 19 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/plotly/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Python</title>
       <link>/tags/python/</link>
       <pubDate>Tue, 13 Nov 2018 00:00:00 +0000</pubDate>
@@ -50,7 +86,7 @@
     <item>
       <title>R Markdown</title>
       <link>/tags/r-markdown/</link>
-      <pubDate>Wed, 14 Nov 2018 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 19 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/r-markdown/</guid>
       <description></description>
@@ -62,6 +98,15 @@
       <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
       
       <guid>/tags/regression/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Shiny</title>
+      <link>/tags/shiny/</link>
+      <pubDate>Thu, 19 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/shiny/</guid>
       <description></description>
     </item>
     

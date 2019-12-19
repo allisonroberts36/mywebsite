@@ -17,7 +17,7 @@
       <pubDate>Wed, 14 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>/posts/visualizing-hospital-networks/</guid>
-      <description>Visualizing a Network My goal is to build an interactive network model that jiggles and is generally fun. I ended up exporting the final product into Shiny, and it looks like this: 
+      <description>##Visualizing a Network My goal is to build an interactive network model that jiggles and is generally fun. I ended up exporting the final product into Shiny, and it looks like this: 
 Below, I’ll show you how I created this project, starting with a similarity matrix of hospital websites and a list of hospital attributes. To see how I created the similarity matrix, check out Part One.</description>
     </item>
     

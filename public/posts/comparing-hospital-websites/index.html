@@ -71,10 +71,8 @@ This project starts with a dataframe that has a “main menu text” variable. T
 <h2>Setting the Environment</h2>
 <p>We need only one package for this project, which allows us to evaluate the similarity of two strings. You should also set your WD.</p>
 <pre class="r"><code>library(RecordLinkage)</code></pre>
-</div>
-<div id="reading-in-the-data" class="section level2">
-<h2>Reading in the data</h2>
-<p>For this to work, we need a dataset with a few key variables. First, we need an ID for each unit. I use the CMS number of each hospital, as this unique to the facility and much shorter than the hospital name. We also need the hospital menu. The code assumes that menu items are separated by a semicolon.</p>
+<p>##Reading in the data
+For this to work, we need a dataset with a few key variables. First, we need an ID for each unit. I use the CMS number of each hospital, as this unique to the facility and much shorter than the hospital name. We also need the hospital menu. The code assumes that menu items are separated by a semicolon.</p>
 <pre class="r"><code>cmstext &lt;- read.csv(&quot;cleanedcms.csv&quot;)</code></pre>
 <p>We also need to create an empty matrix, which is where we will put our similarity scores. The row and column names for this matrix should be the same–we are indicating how each two hospitals are related.</p>
 <pre class="r"><code>simmat=matrix(NA, nrow(cmstext), nrow(cmstext))

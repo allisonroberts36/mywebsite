@@ -6,10 +6,21 @@
     <description>Recent content on Allison Roberts</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 14 Nov 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 19 Dec 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Mapping Hospitals Using a Shiny App</title>
+      <link>/posts/visualizing-hospital-networks/</link>
+      <pubDate>Thu, 19 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/visualizing-hospital-networks/</guid>
+      <description>Mapping Hospitals My goal was to build a highly interactive, informative, and easy-to-understand map of hospitals in the United States. I went through a lot of methods to create this final product, but landed on a combination of Shiny, ggplot2, and plotly to create my final map. The project looks like this: 
+This piece was a part of a larger article on hospitals, published on Canopy.
+Below, I’ll walk you through the creation of the final map.</description>
+    </item>
     
     <item>
       <title>Visualizing Hospital Networks</title>
@@ -17,7 +28,7 @@
       <pubDate>Wed, 14 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>/posts/visualizing-hospital-networks/</guid>
-      <description>Visualizing a Network My goal is to build an interactive network model that jiggles and is generally fun. I ended up exporting the final product into Shiny, and it looks like this: 
+      <description>##Visualizing a Network My goal is to build an interactive network model that jiggles and is generally fun. I ended up exporting the final product into Shiny, and it looks like this: 
 Below, I’ll show you how I created this project, starting with a similarity matrix of hospital websites and a list of hospital attributes. To see how I created the similarity matrix, check out Part One.</description>
     </item>
     
@@ -53,21 +64,6 @@ I was born and raised in Franklin, Tennessee.</description>
     </item>
     
     <item>
-      <title>Publications and Presentations</title>
-      <link>/publications/</link>
-      <pubDate>Tue, 13 Feb 2018 13:42:49 -0500</pubDate>
-      
-      <guid>/publications/</guid>
-      <description>Publications Peer-Reviewed Journal Articles
-Kornrich, Sabino and Allison Roberts. 2017. “Household Income, Women’s Earnings, and Spending on Household Services, 1980-2010.&amp;rdquo; Journal of Marriage and Family. 80:150-165.
-Edited Volumes
-Roberts, Allison. 2012. “Saving Normandy Lake.” An Orange County Almanac and Other Essays, edited by J. Zammit-Lucia. WOLFoundation.org: New York, NY.
-Presentations
-Roberts, Allison. 2018. &amp;ldquo;Hawking Surgery: Hospitals and Online Competition.&amp;rdquo; Southern Sociological Society Annual Meeting 2018: New Orleans.
-Roberts, Allison. &amp;ldquo;Selling Health.</description>
-    </item>
-    
-    <item>
       <title>Teaching</title>
       <link>/teaching/</link>
       <pubDate>Tue, 13 Feb 2018 13:42:49 -0500</pubDate>
@@ -91,12 +87,35 @@ summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 2
     </item>
     
     <item>
+      <title></title>
+      <link>/publications/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/publications/</guid>
+      <description>Publications and Presentations       code{white-space: pre;} pre:not([class]) { background-color: white; }  if (window.hljs) { hljs.configure({languages: []}); hljs.initHighlightingOnLoad(); if (document.readyState &amp;&amp; document.readyState === &#34;complete&#34;) { window.setTimeout(function() { hljs.initHighlighting(); }, 0); } }  h1 { font-size: 34px; } h1.title { font-size: 38px; } h2 { font-size: 30px; } h3 { font-size: 24px; } h4 { font-size: 18px; } h5 { font-size: 16px; } h6 { font-size: 12px; } .</description>
+    </item>
+    
+    <item>
       <title>Apply for the Student Symposium!</title>
       <link>/ihi/test/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/ihi/test/</guid>
       <description>Apply for the Religion in Healthcare Student Symposium! We are seeking graduate students to present their research on religion and healthcare. This is a great opportunity to present your research to a new audience, and get free dinner! Apply here!</description>
+    </item>
+    
+    <item>
+      <title>Publications and Presentations</title>
+      <link>/publications/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/publications/</guid>
+      <description>Publications Peer-Reviewed Journal Articles
+Kornrich, Sabino and Allison Roberts. 2017. “Household Income, Women’s Earnings, and Spending on Household Services, 1980-2010.&amp;rdquo; Journal of Marriage and Family. 80:150-165.
+Edited Volumes
+Roberts, Allison. 2012. “Saving Normandy Lake.” An Orange County Almanac and Other Essays, edited by J. Zammit-Lucia. WOLFoundation.org: New York, NY.
+Presentations Roberts, Allison. 2019. &amp;ldquo;Salvation through Surgery.&amp;rdquo; Healthcare Innovation Student Symposium: Atlanta.
+Get the citations. Check out my data science blog posts for the code used in this presentation.</description>
     </item>
     
   </channel>

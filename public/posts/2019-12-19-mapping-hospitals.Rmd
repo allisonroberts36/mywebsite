@@ -1,0 +1,167 @@
+---
+title: Mapping Hospitals Using a Shiny App
+author: Allison Roberts
+date: '2019-12-19'
+slug: visualizing-hospital-networks
+categories:
+  - R
+tags:
+  - R Markdown
+  - code
+  - Shiny
+  - ggplot2
+  - ggplotly
+  - plotly
+  - geocoding
+showDate: false
+---
+
+## Mapping Hospitals
+  My goal was to build a highly interactive, informative, and easy-to-understand map of hospitals in the United States.  I went through a lot of methods to create this final product, but landed on a combination of Shiny, ggplot2, and plotly to create my final map.  The project looks like this:
+  <iframe width="800" height="550" src="https://allison-roberts.shinyapps.io/Hospital_Systems/"> </iframe>
+  
+This piece was a part of a larger article on hospitals, published on [Canopy](https://canopyforum.org/2019/12/19/selling-salvation-catholic-hospitals-in-the-healthcare-marketplace-by-allison-roberts/).  
+
+ Below, I'll walk you through the creation of the final map.  I can't make this tutorial fully replicable, because my data is proprietary--the American Hospital Association Annual Survey, accessed through the Wharton Research Database.  However, I'll describe every variable used, and encourage you to reach out with any questions.
+  
+## Setting Up the Shiny App 
+  I chose to use the one-file version of Shiny, which includes a "server" and a "user" section.  For any Shiny app, you have to make sure you install any datasets you'll be using, as well as any packages.  Shiny further requires that the data be in the same folder as your app.  Take care to not upload more data than you need--all of this information will be stored online, and a huge dataset will slow down load times.
+  
+```{r message=FALSE, warning=FALSE, eval=FALSE, echo=TRUE}
+library(shiny) #needed to run the Shiny app
+library(plotly) #Creates interactive plots
+library(ggplot2) #Creates my map
+library(maps) # Gives the geospatial data
+aha3 <- readRDS("data/fin_sys2.RDS") #Contains all hospital data
+states <- map_data("state") #Loads in a geocoded map
+```
+
+## The User Interface
+Once everything is installed, we then create the user interface.  For my project, I wanted the map to be really interactive.  Particularly, I wanted people to be able to decide what type of hospitals they wanted to see, how the color coding worked, and what year to view. Shiny makes it fairly easy to implement these options.
+
+As you'll see in the code below, I used "radio buttons" and a slider to implement the choices.  These allow the user to select a category, and allow me to assign a string variable to utilize in the next section.  After defining those, I tell Shiny to display my map (defined in the server section).  Note that height and width are weird with Shiny, particularly if you want to maintain an aspect ratio.  You need to define the width here, and define the height in the code that creates the map.
+
+Shiny also has a variety of layouts you can choose.  I used fluid rows, because this allowed me to place the user input together, above the map itself.
+  
+```{r eval=F,echo=T}
+# Define UI for application that draws a histogram
+ui <- fluidPage(
+   
+   # Application title
+   titlePanel("Hospital Systems over Time"),
+   #Create selection
+   fluidRow(
+      column(width=6,
+      radioButtons(inputId ="type",label="View Hospital Type:", 
+                choiceValues=c("Catholic","Other Religion", "State","Non-Profit", "For-Profit"),
+                choiceNames=c("Catholic","Other Religion", "State","Non-Profit", "For-Profit"),
+                inline=T)),
+      column(width=6,
+      radioButtons(inputId="factor",label="Select Colors:",
+                choiceValues=c("insysf","sysnf"), inline=T,
+                choiceNames=c("Whether hospital is in system", "System affiliation (top 10)*")))),
+   
+   fluidRow(
+      column(width=12,
+      sliderInput(inputId="year",label="Select year",min = 2005,max=2016,value=1,
+                  animate=T,sep="", width="100%"))
+      ),
+
+      # Show the map
+      fluidRow(
+        column(width=12,
+        plotlyOutput("map",height = "auto", width = "100%"),
+        p("*Top 10 hospital systems were determined by number of hospital members in 2016. 
+        Data: American Hospital Association Annual Survey //
+        Wharton Research Database Service via Emory University.")
+        )
+      )
+
+   )
+
+```
+  
+## Creating the Map Itself  
+  As you might anticipate, the creation of the actual map is the more complex piece.  We first must use the user input to decide which portion of our dataset will be used.  We filter for the user selected year and type.  We then give this filtered data to the ggplot.  We create a static map, but include a small "text" argument that will be utilized later on when we make the map interactive.  
+  Our interactive component comes when we add the "ggplotly" element. Note that this can be as complex or not complex as you'd like.  You have to specify layout functions here. Ggplotly doesn't inherit most layout arguments from ggplot.  This is also where the "text" argument comes in handy.  Anything we specify there shows up as hover text.  
+
+  
+```{r, eval=F, echo=T}
+# Define server logic required to draw a histogram
+server <- function(input, output,session) {
+  output$map <- renderPlotly({
+    selecty <- subset(aha3,type2==input$type & YEAR==as.numeric(input$year))
+    #selecty$sysnf <- as.character(selecty$sysnf)
+    anders <- wesanderson:::wes_palette(n=6, name="IsleofDogs1")
+    colors <- c("Ascension Health" = anders[1],
+                "Catholic Health Initiatives" <- anders[2],
+                "Community Health Systems, Inc." <- anders[1],
+                "HCA Healthcare" = anders[2],
+                "No Network" = anders[4],
+                "Other" = anders[6],
+                "LifePoint Health" = anders[5],
+                "Catholic Health Initiatives" = anders[3],
+                "Providence St. Joseph Health" = anders[5],
+                "Trinity Health" = "chartreuse4",
+                "TENET Healthcare Corporation" = "lightpink2",
+                "Prime Healthcare Services" = "steelblue1",
+                "No" = anders[4],
+                "Yes" = "steelblue1"
+                )
+     (two <- ggplot()+
+        #Create polygon
+        geom_polygon(data=states, 
+                     aes(x=long, y=lat, group=group), 
+                     colour="white", fill="darkgrey") +
+        geom_point(data=selecty, alpha=.9,
+                   ## Plot hospitals and select color.  Use "aes_string" because our input (from the UI)
+                   ## is a string.
+                   aes_string(x="LONG",y="LAT", color=input$factor, size="HOSPBD", show.legend=T,
+                       ids="ID"))+
+           ## Add tool tips
+           geom_point(data=selecty,alpha=0,
+                      aes(x=LONG,y=LAT,
+                          text=paste0("<b> Hospital Name: </b>", MNAME,"<br>",
+                                             "<b> Beds: </b>", selecty$HOSPBD,"<br>",
+                                             "<b> System: </b>", selecty$sysn2, "<br>",
+                                             "<b> Network Name: </b>", selecty$NETNAME,"<br>",
+                                             "<b> Disproportionate Share Hospital: </b>", selecty$dsh, "<br>"),
+                         group=1)
+                   )+
+         ## Make all labels blank
+        labs(color=" ",size=element_blank()) +
+        theme(axis.line=element_blank(),
+              axis.text.x=element_blank(),
+              axis.text.y=element_blank(),axis.ticks=element_blank(),
+              axis.title.x=element_blank(),
+              axis.title.y=element_blank(),
+              panel.background=element_blank(),panel.border=element_blank(),panel.grid.major=element_blank(),
+              panel.grid.minor=element_blank(),plot.background=element_blank())+
+        guides(size=FALSE) +
+           scale_color_manual(values=colors)
+     )
+    m = list(
+       l = 10,
+       r = 1,
+       b = 10,
+       t = 50,
+       pad = 0
+    )
+    cdata <- session$clientData
+     ggplotly(two, tooltip="text",autosize=F,width=cdata$output_map_width, height=cdata$output_map_width*.5757) %>%  
+       animation_opts(redraw=F,easing='elastic') %>%
+       #animation_slider(currentvalue = list(prefix = "Year: ", font = list(color="blue"))) %>% 
+       config(displayModeBar=F) %>%
+       layout(hoverlabel=list(font=(list(family="Georgia"))),
+              legend=list(x=0.82,y=0.1,title="In System"))
+   })
+
+```
+  
+And that's it!  I run my final line of code, and then publish the entire thing to Shiny, which will host your creations for free online.
+
+```{r eval=F, echo=T}
+# Run the application 
+shinyApp(ui = ui, server = server)
+```
+
