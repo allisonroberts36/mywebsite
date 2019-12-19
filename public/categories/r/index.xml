@@ -12,11 +12,11 @@
     
     
     <item>
-      <title>Mapping Hospitals Using a Shiny App</title>
-      <link>/posts/visualizing-hospital-networks/</link>
+      <title>Mapping Hospitals</title>
+      <link>/posts/mapping-hospitals/</link>
       <pubDate>Thu, 19 Dec 2019 00:00:00 +0000</pubDate>
       
-      <guid>/posts/visualizing-hospital-networks/</guid>
+      <guid>/posts/mapping-hospitals/</guid>
       <description>Mapping Hospitals My goal was to build a highly interactive, informative, and easy-to-understand map of hospitals in the United States. I went through a lot of methods to create this final product, but landed on a combination of Shiny, ggplot2, and plotly to create my final map. The project looks like this: 
 This piece was a part of a larger article on hospitals, published on Canopy.
 Below, I’ll walk you through the creation of the final map.</description>

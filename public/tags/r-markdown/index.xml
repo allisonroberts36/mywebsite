@@ -6,21 +6,10 @@
     <description>Recent content in R Markdown on Allison Roberts</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 19 Dec 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 14 Nov 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/r-markdown/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Mapping Hospitals Using a Shiny App</title>
-      <link>/posts/visualizing-hospital-networks/</link>
-      <pubDate>Thu, 19 Dec 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/posts/visualizing-hospital-networks/</guid>
-      <description>Mapping Hospitals My goal was to build a highly interactive, informative, and easy-to-understand map of hospitals in the United States. I went through a lot of methods to create this final product, but landed on a combination of Shiny, ggplot2, and plotly to create my final map. The project looks like this: 
-This piece was a part of a larger article on hospitals, published on Canopy.
-Below, I’ll walk you through the creation of the final map.</description>
-    </item>
     
     <item>
       <title>Visualizing Hospital Networks</title>

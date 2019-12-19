@@ -1,19 +1,19 @@
 ---
-title: Mapping Hospitals Using a Shiny App
+title: Mapping Hospitals
 author: Allison Roberts
 date: '2019-12-19'
-slug: visualizing-hospital-networks
+slug: mapping-hospitals
 categories:
   - R
 tags:
-  - R Markdown
-  - code
-  - Shiny
+  - geocoding
   - ggplot2
   - ggplotly
+  - hospitals
+  - plot
   - plotly
-  - geocoding
-showDate: false
+  - Shiny
+showDate: yes
 ---
 
 ## Mapping Hospitals
@@ -164,4 +164,3 @@ And that's it!  I run my final line of code, and then publish the entire thing t
 # Run the application 
 shinyApp(ui = ui, server = server)
 ```
-

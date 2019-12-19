@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/posts/visualizing-hospital-networks/</loc>
+    <loc>/posts/mapping-hospitals/</loc>
     <lastmod>2019-12-19T00:00:00+00:00</lastmod>
   </url>
   
@@ -72,7 +72,7 @@
   
   <url>
     <loc>/tags/code/</loc>
-    <lastmod>2019-12-19T00:00:00+00:00</lastmod>
+    <lastmod>2018-11-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -96,13 +96,13 @@
   
   <url>
     <loc>/tags/hospitals/</loc>
-    <lastmod>2018-11-14T00:00:00+00:00</lastmod>
+    <lastmod>2019-12-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/plot/</loc>
-    <lastmod>2015-07-23T21:13:14-05:00</lastmod>
+    <lastmod>2019-12-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -142,7 +142,7 @@
   
   <url>
     <loc>/tags/r-markdown/</loc>
-    <lastmod>2019-12-19T00:00:00+00:00</lastmod>
+    <lastmod>2018-11-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -166,7 +166,7 @@
   
   <url>
     <loc>/tags/</loc>
-    <lastmod>2019-12-19T00:00:00+00:00</lastmod>
+    <lastmod>2018-11-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

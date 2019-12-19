@@ -6,10 +6,21 @@
     <description>Recent content in Plot on Allison Roberts</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 23 Jul 2015 21:13:14 -0500</lastBuildDate>
+    <lastBuildDate>Thu, 19 Dec 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/plot/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Mapping Hospitals</title>
+      <link>/posts/mapping-hospitals/</link>
+      <pubDate>Thu, 19 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/mapping-hospitals/</guid>
+      <description>Mapping Hospitals My goal was to build a highly interactive, informative, and easy-to-understand map of hospitals in the United States. I went through a lot of methods to create this final product, but landed on a combination of Shiny, ggplot2, and plotly to create my final map. The project looks like this: 
+This piece was a part of a larger article on hospitals, published on Canopy.
+Below, I’ll walk you through the creation of the final map.</description>
+    </item>
     
     <item>
       <title>Hello R Markdown</title>
