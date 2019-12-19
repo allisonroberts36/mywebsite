@@ -1,0 +1,9 @@
+blogdown::new_site(theme="vickylai/hugo-theme-sam", theme_example=TRUE)
+blogdown::serve_site()
+servr::daemon_stop("4324825224")
+blogdown:::new_post_addin()
+
+
+blogdown::build_site()
+
+blogdown::hugo_version()

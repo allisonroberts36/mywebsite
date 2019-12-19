@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1542301279626.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "241525055",
+    "id" : "1834DF98",
+    "lastKnownWriteTime" : 1548705795,
+    "last_content_update" : 1548705795,
+    "path" : "~/Box Sync/My Website/mywebsite/config.toml",
+    "project_path" : "config.toml",
+    "properties" : {
+        "cursorPosition" : "48,19",
+        "scrollLine" : "5"
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "toml"
+}
